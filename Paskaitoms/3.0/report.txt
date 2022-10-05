@@ -1,0 +1,90 @@
+QUERY1
+[16]
+Jenny Wozniak 2 0.000000 0 English Spanish French
+Jane Perry 1 0.000000 0 English
+Kim Sheen 1 0.000000 0 English
+...
+
+QUERY2
+[876]
+Kylie Gibbs 3 5.333333 3 Calculus 5 Set theory 9 Calculus 2 English
+Julie Druddle 3 5.000000 1 Discrete mathematics 5 English Spanish
+Victor Quarry 2 6.333333 3 Set theory 5 Physics 6 Operating systems 8 English
+...
+
+QUERY3
+[798]
+Kylie Gibbs 3 5.333333 3 Calculus 5 Set theory 9 Calculus 2 English
+Julie Kesting 2 4.000000 3 Algorithms 1 Algorithms 8 Computer programming 3 English Lithuanian
+Julie Druddle 3 5.000000 1 Discrete mathematics 5 English Spanish
+...
+
+QUERY4
+[508]
+Kylie Gibbs 3 5.333333 3 Calculus 5 Set theory 9 Calculus 2 English
+Julie Kesting 2 4.000000 3 Algorithms 1 Algorithms 8 Computer programming 3 English Lithuanian
+Julie Druddle 3 5.000000 1 Discrete mathematics 5 English Spanish
+...
+
+QUERY5
+[247]
+Jamie King 3 8.500000 2 Operating systems 7 Computer networks 10 English Russian Spanish French
+Charlie Doe 4 5.333333 3 Physics 7 Algorithms 3 Algebra 6 English
+George Sheen 3 5.600000 5 Operating systems 7 Computer programming 8 Physics 1 Philosophy 5 Computer networks 7 English French
+...
+
+QUERY6
+[547]
+Julie Druddle 3 5.000000 1 Discrete mathematics 5 English Spanish
+Victor Quarry 2 6.333333 3 Set theory 5 Physics 6 Operating systems 8 English
+Richard Sleight 3 7.250000 4 Algebra 8 Set theory 7 Operating systems 9 Physics 5 English Spanish French
+...
+
+QUERY7
+[176]
+Matt Darry 1 6.000000 2 Operating systems 6 Philosophy 6 English French
+Julie Stapleton 3 7.000000 1 Operating systems 7 English Russian French
+Alice Kesting 1 7.500000 2 Discrete mathematics 6 Calculus 9 English French
+...
+
+QUERY8
+[197]
+Kylie Gibbs 3 5.333333 3 Calculus 5 Set theory 9 Calculus 2 English
+Charlie Doe 4 5.333333 3 Physics 7 Algorithms 3 Algebra 6 English
+Alice Kesting 1 7.500000 2 Discrete mathematics 6 Calculus 9 English French
+...
+
+QUERY9
+[87]
+Matt Darry 1 6.000000 2 Operating systems 6 Philosophy 6 English French
+Charlie de Vito 3 8.000000 4 Physics 9 Philosophy 5 Computer programming 8 Philosophy 10 English French
+Robert Darry 3 7.000000 1 Philosophy 7 English French Lithuanian
+...
+
+QUERY10
+[247]
+Julie Kesting 2 4.000000 3 Algorithms 1 Algorithms 8 Computer programming 3 English Lithuanian
+Eve Note 3 4.666667 3 Computer programming 7 Discrete mathematics 3 Operating systems 4 English Spanish Lithuanian
+Adam Sheen 3 6.500000 2 Computer networks 4 Discrete mathematics 9 English French Lithuanian
+...
+
+QUERY11
+[238]
+Jamie King 3 8.500000 2 Operating systems 7 Computer networks 10 English Russian Spanish French
+Wilhelm Sleight 2 8.500000 2 Set theory 7 Set theory 10 English
+Matt Darry 1 6.000000 2 Operating systems 6 Philosophy 6 English French
+...
+
+QUERY12
+[4]
+Kim Gibson 4 5.833333 6 Computer networks 6 Operating systems 5 Operating systems 10 Set theory 8 Algorithms 4 Physics 2 English Russian Spanish French Lithuanian
+Kim Wozniak 2 5.000000 1 Computer networks 5 English Russian Spanish French Lithuanian
+Jamie Druddle 4 8.000000 1 Philosophy 8 English Russian Spanish French Lithuanian
+...
+
+QUERY13
+[64]
+Helen Gibbs 2 5.000000 2 Algorithms 5 Computer programming 7 English
+Jenny Wozniak 2 0.000000 0 English Spanish French
+Arnold Gibson 3 5.000000 3 Operating systems 7 Discrete mathematics 5 Algorithms 6 English Lithuanian
+...
