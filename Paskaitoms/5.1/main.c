@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//// A ////
 #define l 10
 
 int main()
@@ -7,6 +8,7 @@ int main()
     int A[l] = {0};
     int size = l;
 
+    //// B ////
     for (int i = 0; i < l; i++)
     {
         printf("%d ", A[i]);
@@ -14,17 +16,20 @@ int main()
 
     printf("\n\n");
 
+    //// C ////
     A[0] = 1;
     A[3] = 2;
     A[9] = 3;
 
-    for (int i = 2; i <= size - 2; i++)
+    //// D ////
+    for (int i = 2; i < size - 1; i++)
     {
         A[i] = A[i + 1];
     }
 
     size--;
 
+    //// E ////
     for (int i = size; i > 7; i--)
     {
         A[i] = A[i - 1];
@@ -33,15 +38,17 @@ int main()
     A[6] = 4;
     size++;
 
-    for (int i = 0; i < l; i++)
+    //// F ////
+    for (int i = 0; i < size; i++)
     {
         printf("%d ", A[i]);
     }
 
     printf("\n\n");
 
+    //// G ////
     int x = 0, y = 0;
-    printf("Iveskite 2 skaicius x ir y. X priklauso nuo [0; 9]\n");
+    printf("Iveskite 2 skaicius x ir y. Masyvo elementui su indeksu x bus priskirta reiksme y. X priklauso nuo [0; 9]\n");
     scanf("%d%d", &x, &y);
 
     while(x > 9)
@@ -52,7 +59,8 @@ int main()
 
     A[x] = y;
 
-    printf("Iveskite skaiciu x. X priklauso nuo [0; 9]\n");
+    //// H ////
+    printf("Iveskite skaiciu x. Elementas su indeksu x bus istrintas. X priklauso nuo [0; 9]\n");
     scanf("%d", &x);
 
     while(x > 9)
@@ -61,14 +69,15 @@ int main()
         scanf("%d", &x);
     }
 
-    for (int i = x; i <= size - x; i++)
+    for (int i = x; i < size - 1; i++)
     {
         A[i] = A[i + 1];
     }
 
     size--;
 
-    printf("Iveskite 2 skaicius x ir y. X priklauso nuo [0; 9]\n");
+    //// I ////
+    printf("Iveskite 2 skaicius x ir y. Reiksme y bus iterpta taip, kad jos indeksas butu x. X priklauso nuo [0; 9]\n");
     scanf("%d%d", &x, &y);
 
     while(x > 9)
@@ -85,6 +94,7 @@ int main()
     A[x] = y;
     size++;
 
+    //// J ////
     for (int i = 0; i < l; i++)
     {
         printf("%d ", A[i]);
