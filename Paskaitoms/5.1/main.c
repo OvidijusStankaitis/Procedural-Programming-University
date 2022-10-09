@@ -14,7 +14,7 @@ int main()
         printf("%d ", A[i]);
     }
 
-    printf("\n\n");
+    printf("\n");
 
     //// C ////
     A[0] = 1;
@@ -44,28 +44,35 @@ int main()
         printf("%d ", A[i]);
     }
 
-    printf("\n\n");
+    printf("\n");
 
     //// G ////
     int x = 0, y = 0;
-    printf("Iveskite 2 skaicius x ir y. Masyvo elementui su indeksu x bus priskirta reiksme y. X priklauso nuo [0; 9]\n");
-    scanf("%d%d", &x, &y);
+    printf("Masyvo elementui su indeksu x bus priskirta reiksme y. X priklauso nuo [0; 9]\n");
+    printf("Iveskite x: ");
+    scanf("%d", &x);
 
-    while(x > 9)
+    while(x > 9 || x < 0)
     {
         printf("Ivestas x nepriklauso intervalui, veskite kita. X priklauso nuo [0; 9]\n");
+        printf("Iveskite x: ");
         scanf("%d", &x);
     }
+
+    printf("Iveskite y: ");
+    scanf("%d", &y);
 
     A[x] = y;
 
     //// H ////
-    printf("Iveskite skaiciu x. Elementas su indeksu x bus istrintas. X priklauso nuo [0; 9]\n");
+    printf("Elementas su indeksu x bus istrintas. X priklauso nuo [0; 9]\n");
+    printf("Iveskite x: ");
     scanf("%d", &x);
 
-    while(x > 9)
+    while(x > 9 || x < 0)
     {
         printf("Ivestas x nepriklauso intervalui, veskite kita. X priklauso nuo [0; 9]\n");
+        printf("Iveskite x: ");
         scanf("%d", &x);
     }
 
@@ -77,14 +84,19 @@ int main()
     size--;
 
     //// I ////
-    printf("Iveskite 2 skaicius x ir y. Reiksme y bus iterpta taip, kad jos indeksas butu x. X priklauso nuo [0; 9]\n");
-    scanf("%d%d", &x, &y);
+    printf("Reiksme y bus iterpta taip, kad jos indeksas butu x. X priklauso nuo [0; 9]\n");
+    printf("Iveskite x: ");
+    scanf("%d", &x);
 
-    while(x > 9)
+    while(x > 9 || x < 0)
     {
         printf("Ivestas x nepriklauso intervalui, veskite kita. X priklauso nuo [0; 9]\n");
+        printf("Iveskite x: ");
         scanf("%d", &x);
     }
+
+    printf("Iveskite y: ");
+    scanf("%d", &y);
 
     for (int i = size; i > x; i--)
     {
