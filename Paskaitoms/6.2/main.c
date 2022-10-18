@@ -4,13 +4,13 @@
 
 int main()
 {
-    setlocale(LC_ALL, "lt_LT");
-
     FILE *in = NULL;
-    in = fopen("in.txt", "r");
+    setlocale(LC_ALL, "lt_LT.utf8");
 
     double x = 0, temp = 0;
+
     bool loopStatus = true;
+
     int count = 0;
 
     printf("Programa praso pateikti faile in.txt realuji skaiciu nuo 10 iki 100 iskaitytinai\n");
@@ -20,32 +20,57 @@ int main()
 
     getchar(); 
 
+    in = fopen("in.txt", "r");
+
     while(loopStatus == true)
     {
-        while(fscanf(in, "%lf", &x) != 1 || fgetc(in) != EOF|| x < 10 || x > 1000)
+        if(fscanf(in, "%lf", &x) != 1 || fgetc(in) != EOF|| x < 10 || x > 1000)
         {
             printf("Bloga ivestis. Iveskite i faila realuji skaiciu nuo 10 iki 1000 iskaitytinai, kuris turi nedaugiau 3 skaiciu po kablelio ir paspauskite enter klavisa:\n");
             
-            fclose(in);
             getchar();
+            fclose(in);
             in = fopen("in.txt", "r");
         }
-
-        temp = x;
-
-        while(temp!=((int)temp))
+        
+        else 
         {
-            count++;
-            temp=temp*10;
-        }
+            count = 0;
 
-        if(count <= 3)
-        {
-            loopStatus = false;
+            temp = x;
+
+            while(temp!=((int)temp))
+            {
+                count++;
+                temp=temp*10;
+            }
+
+            if(count <= 3)
+            {
+                loopStatus = false;
+            }
+
+            else
+            {
+                printf("Bloga ivestis. Iveskite i faila realuji skaiciu nuo 10 iki 1000 iskaitytinai, kuris turi nedaugiau 3 skaiciu po kablelio ir paspauskite enter klavisa:\n");
+                getchar();
+                fclose(in);
+                in = fopen("in.txt", "r");
+            }
         }
     }
 
-    printf("%lf\n", x);
+    int temp2 = ((int)x);
+    
+    while(temp2 != 0)
+    {
+        temp2 = temp2 / 10;
+        count++;
+    }
+
+    printf("%d\n", count);
 
     fclose(in);
+
+    return 0;
 }
