@@ -4,8 +4,13 @@
 
 int main()
 {
+    char file[256];
+    snprintf(file, sizeof(file), "%s.txt", "in");
+
     FILE *in = NULL;
     setlocale(LC_ALL, "lt_LT.utf8");
+
+    char filename[252];
 
     double x = 0, temp = 0;
 
@@ -20,7 +25,16 @@ int main()
 
     getchar(); 
 
-    in = fopen("in.txt", "r");
+    in = fopen(file, "r");
+
+    while(in == NULL)
+    {
+        printf("Failas nerastas, iveskite duomenu failo pavadinima be pletinio:\n");
+        scanf("%s", filename);
+
+        snprintf(file, sizeof(file), "%s.txt", filename);
+        in = fopen(file, "r");
+    }
 
     while(loopStatus == true)
     {
