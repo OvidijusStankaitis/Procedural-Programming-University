@@ -38,13 +38,14 @@ int main()
 
     while(loopStatus == true)
     {
+        x = 0;
+
         if(fscanf(in, "%lf", &x) != 1 || fgetc(in) != EOF|| x < 10 || x > 1000)
         {
             printf("Bloga ivestis. Iveskite i faila realuji skaiciu nuo 10 iki 1000 iskaitytinai, kuris turi nedaugiau 3 skaiciu po kablelio ir paspauskite enter klavisa:\n");
-            
             getchar();
             fclose(in);
-            in = fopen("in.txt", "r");
+            in = fopen(file, "r");
         }
         
         else 
@@ -57,19 +58,20 @@ int main()
             {
                 count++;
                 temp=temp*10;
+
+                if(count > 3)
+                {
+                    printf("Bloga ivestis. Iveskite i faila realuji skaiciu nuo 10 iki 1000 iskaitytinai, kuris turi nedaugiau 3 skaiciu po kablelio ir paspauskite enter klavisa:\n");
+                    getchar();
+                    fclose(in);
+                    in = fopen(file, "r");
+                    break;
+                }
             }
 
             if(count <= 3)
             {
                 loopStatus = false;
-            }
-
-            else
-            {
-                printf("Bloga ivestis. Iveskite i faila realuji skaiciu nuo 10 iki 1000 iskaitytinai, kuris turi nedaugiau 3 skaiciu po kablelio ir paspauskite enter klavisa:\n");
-                getchar();
-                fclose(in);
-                in = fopen("in.txt", "r");
             }
         }
     }
@@ -82,7 +84,7 @@ int main()
         count++;
     }
 
-    printf("%d\n", count);
+    printf("Skaiciaus ilgis yra %d skaiciai\n", count);
 
     fclose(in);
 
