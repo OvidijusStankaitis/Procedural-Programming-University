@@ -18,7 +18,7 @@ int main()
 
     int count = 0;
 
-    printf("Programa praso pateikti faile in.txt realuji skaiciu nuo 10 iki 100 iskaitytinai\n");
+    printf("Programa praso pateikti faile in.txt, arba jo neradus, faile su pasirinktu pavadinimu, realuji skaiciu nuo 10 iki 100 iskaitytinai\n");
     printf("Skaicius negali tureti daugiau triju skaiciu po kablelio\n");
     printf("Programa apskaiciuoja skaiciaus ilgi\n\n");
     printf("Iveskite i faila realuji skaiciu nuo 10 iki 1000 iskaitytinai, kuris turi nedaugiau 3 skaiciu po kablelio ir paspauskite enter klavisa:\n");
