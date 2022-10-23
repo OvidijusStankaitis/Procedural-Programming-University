@@ -14,6 +14,10 @@ int main()
 
     bool loopStatus = true;
 
+    printf("Programa papraso vartotojo ivesti tris sveikus skaicius atskirtus kabliataskiais, suranda ir \n");
+    printf("faile, kurio pavadinima reikia ivesti su pletiniu \".txt.\", atspausdina viduriniji is ivestu skaiciu pagal reiksme.\n");
+    printf("Iveskite tris sveikus skaicius atskirtus kabliataskiais.\n");
+
     while(loopStatus)
     {
         char input[65535] = {' '};
@@ -22,7 +26,7 @@ int main()
 
         if(sscanf(input, "%lld%c%lld%c%lld", &num[0], &trash1, &num[1], &trash2, &num[2]) != 5 || trash1 != ';' || trash2 != ';')
         {
-            printf("Wrong input.\n");
+            printf("Bloga ivestis. Iveskite tris sveikus skaicius be tarpu, kurie yra atskirti kabliataskiais.\n");
 
             while(getchar() != '\n')
             {
@@ -32,7 +36,7 @@ int main()
 
         else if(num[0] == 9223372036854775807 || num[1] == 9223372036854775807 || num[2] == 9223372036854775807)
         {
-            printf("Ivestas per ilgas skaicius, veskite is naujo.\n");
+            printf("Ivestas per ilgas skaicius arba skaiciai, veskite is naujo.\n");
         }
 
         else
@@ -62,6 +66,8 @@ int main()
 
     int fileNameLength = 0;
 
+    printf("Iveskite failo pavadinima, kurio pletinys yar \".txt.\" \n");
+
     while (loopStatus)
     {
         scanf("%s", &fileName);
@@ -70,7 +76,7 @@ int main()
 
         if(fileName[fileNameLength - 1] != 't' || fileName[fileNameLength - 2] != 'x' || fileName[fileNameLength - 3] != 't' || fileName[fileNameLength - 4] != '.')
         {
-            printf("ERROR!\n");
+            printf("Failo pletinys turi buti \".txt\"\n");
         }
 
         else loopStatus = false;
