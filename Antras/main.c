@@ -4,6 +4,7 @@
 // Variantas nr. - 5
 
 #include <stdio.h>
+#include <stdbool.h>
 
 struct Coordinates
 {
@@ -48,25 +49,32 @@ int main()
         }
     }
 
-    struct Coordinates C[n], OUT;
+    struct Coordinates C[n]; 
+    
+    int OUT = 0;
 
     smallestNumberMaximum(n, N, C);
 
-    OUT.n = C[0].n;
+    OUT = C[0].n;
 
     for (int i = 0; i < n; i++)
     {
-        if(OUT.n < C[i].n)
+        if(OUT < C[i].n)
         {
-            OUT.n = C[i].n;
-            OUT.x = C[i].x;
-            OUT.y = C[i].y;            
+            OUT = C[i].n;         
         } 
     }
     
-    printf("\nThe largest number amongst the smallest numbers in each line is: %d\n", OUT.n);
+    printf("\nThe largest number amongst the smallest numbers in each line is: %d\n", OUT);
     printf("It's coordinates are: \n");
-    printf("Row %d Collumn %d \n", OUT.x + 1, OUT.y + 1);
+    
+    for(int i = 0; i < n; i++)
+    {
+        if(C[i].n == OUT)
+        {
+            printf("Row %d Collumn %d \n", C[i].x + 1, C[i].y + 1);
+        }
+    }
 
     return 0;
 }
@@ -75,10 +83,13 @@ void smallestNumberMaximum(int n, int N[][n], struct Coordinates C[n])
 {
     int min = 0;
 
+    bool status = true;
+
     for (int i = 0; i < n; i++)
     {
         min = N[i][0];
         C[i].x = i;
+        status = true;
 
         for (int u = 0; u < n; u++)
         {
@@ -86,10 +97,13 @@ void smallestNumberMaximum(int n, int N[][n], struct Coordinates C[n])
             {
                 min = N[i][u];
                 C[i].y = u;
+                status = false;
             }   
 
-            else C[i].y = 0;
+            else if(status == true) C[i].y = 0;
         }
+
+        printf("\n%d\n",C[i].y);
 
         C[i].n = min;
     }
