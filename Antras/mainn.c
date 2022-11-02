@@ -5,14 +5,9 @@
 
 #include <stdio.h>
 
-struct Coordinates
-{
-    int n;
-    int x;
-    int y;
-};
+int smallestNumberMaximum(int n, int N[][n]);
 
-void smallestNumberMaximum(int n, int N[][n], struct Coordinates C[n]);
+void maxCoord(int n, int max, int N[][n]);
 
 int main()
 {
@@ -48,49 +43,58 @@ int main()
         }
     }
 
-    struct Coordinates C[n], OUT;
+    int max = smallestNumberMaximum(n, N);
 
-    smallestNumberMaximum(n, N, C);
-
-    OUT.n = C[0].n;
-
-    for (int i = 0; i < n; i++)
-    {
-        if(OUT.n < C[i].n)
-        {
-            OUT.n = C[i].n;
-            OUT.x = C[i].x;
-            OUT.y = C[i].y;            
-        } 
-    }
-    
-    printf("\nThe largest number amongst the smallest numbers in each line is: %d\n", OUT.n);
+    printf("\nThe largest number amongst the smallest numbers in each line is: %d\n", max);
     printf("It's coordinates are: \n");
-    printf("Row %d Collumn %d \n", OUT.x + 1, OUT.y + 1);
+
+    maxCoord(n, max, N);
 
     return 0;
 }
 
-void smallestNumberMaximum(int n, int N[][n], struct Coordinates C[n])
+int smallestNumberMaximum(int n, int N[][n])
 {
-    int min = 0;
+    int MIN[n], min = 0;
 
     for (int i = 0; i < n; i++)
     {
         min = N[i][0];
-        C[i].x = i;
 
         for (int u = 0; u < n; u++)
         {
             if(min > N[i][u])
             {
                 min = N[i][u];
-                C[i].y = u;
             }   
-
-            else C[i].y = 0;
         }
 
-        C[i].n = min;
+        MIN[i] = min;
+    }
+
+    int max = MIN[0];
+
+    for (int i = 0; i < n; i++)
+    {
+        if(max < MIN[i])
+        {
+            max = MIN[i];
+        }  
+    }
+
+    return max;
+}
+
+void maxCoord(int n, int max, int N[][n])
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int u = 0; u < n; u++)
+        {
+            if(N[i][u] == max)
+            {
+                printf("Line %d, collumn %d\n", i + 1, u + 1);
+            }
+        } 
     }
 }
