@@ -18,21 +18,29 @@ struct Coordinates
 // Declaring a function that finds the smallest number in each line
 void smallestNumbers(int n, int N[][n], struct Coordinates C[n]);
 
+// Declaring a function that validates user input
+int Validation(int n);
+
 int main()
 {
-    int n = 0; 
+    int n = 0, m = 0; 
+    bool loopStatus = true;
 
     // Prompting user to enter one whole positive number and chacking their input
     printf("Enter a positive whole number n:\n");
 
-    while(scanf("%d", &n) != 1 || getchar() != '\n' || n <= 0)
+    while(loopStatus)
     {
-        printf("Wrong input, enter a positive whole number:\n");
-        while(getchar() != '\n')
+        n = Validation(n);
+
+        if(n <= 0)
         {
-            ;
+            printf("Wrong input, enter a positive whole number:\n");
         }
+
+        else loopStatus = false;
     }
+    
 
     int N[n][n];
 
@@ -43,15 +51,39 @@ int main()
     {
         for (int u = 0; u < n; u++)
         {
-            while(scanf("%d", &N[i][u]) != 1 || getchar() != '\n')
+            m = Validation(m);
+
+            N[i][u] = m;
+        }
+    }
+
+    // Checking if the array is filled with the same number
+    bool printStatus = true;
+
+    int checking = N[0][0];
+
+    for(int i = 0; i < n; i++)
+    {
+        for (int u = 0; u < n; u++)
+        {
+            if(checking != N[i][u])
             {
-                printf("Wrong input, enter a whole number: \n");
-                while(getchar() != '\n')
-                {
-                    ;
-                }
+                printStatus = false;
+                break;
             }
         }
+
+        if(printStatus == false) 
+        {
+            break;
+        }
+    }
+
+    // If the array is filled with the same number, program prints out a message and terminates
+    if(printStatus)
+    {
+        printf("All numbers are equal\n");
+        return 0;
     }
 
     struct Coordinates C[n]; 
@@ -71,7 +103,7 @@ int main()
             OUT = C[i].n;         
         } 
     }
-    
+
     // Printing which number was the maximum of minimums
     printf("\nThe largest number amongst the smallest numbers in each line is: %d\n", OUT);
     printf("It's coordinates are: \n");
@@ -113,8 +145,21 @@ void smallestNumbers(int n, int N[][n], struct Coordinates C[n])
             else if(status == true) C[i].y = 0;
         }
 
-        printf("\n%d\n",C[i].y);
-
         C[i].n = min;
     }
+}
+
+// A function that validates user input
+int Validation(int n)
+{
+    while(scanf("%d", &n) != 1 || getchar() != '\n')
+    {
+        printf("Wrong input, enter a positive whole number:\n");
+        while(getchar() != '\n')
+        {
+            ;
+        }
+    }
+
+    return n;
 }
