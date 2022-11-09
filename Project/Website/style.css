@@ -1,0 +1,36 @@
+@font-face {
+    font-family: Temp;
+    src: url("Assets/DIGITALDREAMFAT.ttf") format("truetype");
+    font-weight: bold;
+  }
+
+.html{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.bgcl{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-y: scroll;
+    background: rgb(0,212,255);
+    background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 68%, rgba(0,0,0,1) 100%);
+}
+
+.text{
+    display: flex;
+    justify-content: center;
+    margin-top: 40vh;
+    font-size: 10vh;
+    font-family: Temp;
+    color: #fff;
+    text-shadow:
+        0 0 0.35vw #fff,
+        0 0 0.7vw #fff,
+        0 0 1.05vw #bc13fe,
+        0 0 1.4vw #bc13fe,
+        0 0 1.75vw #bc13fe,
+        0 0 2.1vw #bc13fe,
+        0 0 2.45vw #bc13fe;
+}
