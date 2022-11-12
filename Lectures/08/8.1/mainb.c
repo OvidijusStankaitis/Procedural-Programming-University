@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-int* generateArray();
+int* generateArray(int n, int min, int max);
 
 int main()
 {
@@ -13,19 +13,23 @@ int main()
 
     printf("\n");
 
-    int* N = generateArray();
+    int n = 0, min = 0, max = 0;
+
+    scanf("%d %d %d", &n, &min, &max);
+
+    int* N = generateArray(n, min, max);
 
     printf("\n");
 
     if(N == NULL)
     {
         printf("Nepavyko sugeneruoti masyvo.\n");
-        return 0; 
+        return 0;
     }
 
     else
     {
-        for(int i = 0; N[i]!='\0'; i++)
+        for(int i = 0; N[i] != '\0'; i++)
         {
             printf("%lld\n", N[i]);
         }
@@ -34,12 +38,8 @@ int main()
     }
 }
 
-int* generateArray()
+int* generateArray(int n, int min, int max)
 {
-    int n = 0, min = 0, max = 0;
-
-    scanf("%d %d %d", &n, &min, &max);
-
     if(min >= max)
     {
         return NULL;
@@ -47,11 +47,11 @@ int* generateArray()
 
     else
     {
-        int *N = malloc(sizeof(n));
+        int *N = malloc(sizeof(int) * n);
 
         for(int i = 0; i < n; i++)
         {
-            N[i] = (rand() % (max - min + 1)) + min;
+            *(N + i) = (rand() % (max - min + 1)) + min;
         }
 
         return N;

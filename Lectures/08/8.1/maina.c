@@ -29,7 +29,7 @@ int main()
 
     else
     {
-        for(int i = 0; N[i]!='\0'; i++)
+        for(int i = 0; N[i] != '\0'; i++)
         {
             printf("%lld\n", N[i]);
         }
