@@ -1,4 +1,7 @@
+makefile
+main
 *.out
 *.txt
 *.zip
 test.*
+makefile
