@@ -1,12 +1,14 @@
-#include <stdio.h>
+#include <functions.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 FILE* fileValidation(FILE* file, char* mode)
 {    
     char fileName[256];
     char fileNoExtName[254];
 
-    printf("The program will open a .txt file with the name you provided.\n");
-    printf("Input file must exist, output file will be created.\n");
+    printf("The program will open an input .txt file with the name you provided.\n");
+    printf("File must exist.\n\n");
     scanf("%s", fileNoExtName);
 
     snprintf(fileName, sizeof(fileName), "%s.txt", fileNoExtName);
@@ -15,9 +17,9 @@ FILE* fileValidation(FILE* file, char* mode)
 
     while(file == NULL)
     {
-        printf("File not found. Please enter a file name without extension:\n\n");
-        printf("The program will open a .txt file with the name you provided.\n");
-        printf("Input file must exist, output file will be created.\n");
+        printf("File not found. Enter an input file name without extension:\n\n");
+        printf("The program will open an input .txt file with the name you provided.\n");
+        printf("File must exist.\n\n");
         scanf("%s", fileNoExtName);
     
         snprintf(fileName, sizeof(fileName), "%s.txt", fileNoExtName);
@@ -28,30 +30,154 @@ FILE* fileValidation(FILE* file, char* mode)
     return file;
 }
 
-void menu()
+int Validation(FILE* in, bool* status)
+{
+    int n;
+    int loop = 0;
+    char c;
+
+    while(!loop)
+    {
+        if(fscanf(in, "%d", &n) == 1) 
+        {   
+            c = fgetc(in);
+            if(c == ' ' || c == '\n' || c == EOF) 
+            {
+                return n;
+            }
+        }
+
+        if(fgetc(in) == EOF)
+        {
+            loop = 1;
+            *status = false;
+        }
+    }
+
+    return n;
+}
+
+int choiceValidation(int n)
+{
+    while(scanf("%d", &n) != 1 || getchar() != '\n')
+    {
+        printf("\nThis option does not exist!\n\n");
+        printf("1.Create the linked list from an input file\n");
+        printf("2.Print out the linked list\n");
+        printf("3.Remove the largest number from the list\n");
+        printf("4.Exit program\n\n");
+        while(getchar() != '\n')
+        {
+            ;
+        }
+    }
+
+    return n;
+}
+
+void menu(Node** head, FILE* in)
 {
     int choice = 0;
 
-    printf("1.Print out the linked list\n");
-    printf("2.Remove the largest number from the list\n");
-    printf("3.Exit program\n");
+    printf("1.Create the linked list from an input file\n");
+    printf("2.Print out the linked list\n");
+    printf("3.Remove the largest number from the list\n");
+    printf("4.Exit program\n\n");
 
-    printf("Enter your choice:\n");
-    scanf("%d", &choice);
+    printf("Enter your choice:\n\n");
+    choice = choiceValidation(choice);
+    printf("\n");
 
     switch(choice)
     {
         case 1:
+            printf("List was created.");
+            createList(head, in);
+            printf("\n\n");
             break;
             
         case 2:
+            printf("List: ");
+            printList(head);
+            printf("\n\n");
             break;
 
-        case 3: 
+        case 3:
+            printf("Print\n");
+
+            break;
+
+        case 4: 
             _Exit(0);
         
         default:
-            printf("This option does not exist\n");
+            printf("This option does not exist!\n\n");
             break;
+    }
+}
+
+void createList(Node** head, FILE* in)
+{
+    Node* temp;
+    Node* ptr;
+
+    bool status = true;
+
+    int n;
+
+    while(!feof(in))
+    {
+        n = Validation(in, &status);
+
+        temp = (Node*)malloc(sizeof(Node));
+
+        if(temp == NULL)
+        {
+            printf("Out of memory!\n");
+            _Exit(0);
+        }
+
+        temp -> data = n;
+
+        temp -> next = NULL;
+
+        if((*head) == NULL)
+        {
+            (*head) = temp;
+        }
+
+        else
+        {
+            ptr = (*head);
+
+            while(ptr -> next != NULL)
+            {
+                ptr = ptr -> next;
+            }
+            ptr -> next = temp;
+        }        
+    }
+}
+
+void printList(Node** head)
+{
+    Node* ptr;
+
+    if((*head) == NULL)
+    {
+        printf("List is empty");
+        return;
+    }
+
+    else
+    {    
+        printf("%d ", (*head) -> data);
+        if((*head) -> next == NULL)
+        {
+            return;
+        }
+        
+        ptr = (*head) -> next;
+        printList(&ptr);
     }
 }

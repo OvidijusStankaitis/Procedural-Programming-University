@@ -1,21 +1,19 @@
-#include <stdio.h>
-#include "functions.c"
+#include <functions.h>
 
 int main()
 {
     FILE* in = NULL;
-    FILE* out = NULL;
     
-    printf("Enter an input file name wihout extension.\n");
-    fileValidation(in, "r");
+    printf("Enter an input file name wihout extension:\n");
+    in = fileValidation(in, "r");
+    printf("\n");
 
-    printf("Enter an input file name wihout extension.\n");
-    fileValidation(in, "w");
+    Node* head = NULL;
 
-    menu();
-
-    fclose(in);
-    fclose(out);
+    while(1)
+    {
+        menu(&head, in);
+    }
 
     return 0;
 }
