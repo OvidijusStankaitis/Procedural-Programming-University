@@ -75,9 +75,11 @@ int choiceValidation(int n)
     return n;
 }
 
-void menu(Node** head, FILE* in)
+void menu(Node** head, FILE* in, bool* menuS)
 {
     int choice = 0;
+
+    int MAX = 0;
 
     printf("1.Create the linked list from an input file\n");
     printf("2.Print out the linked list\n");
@@ -91,9 +93,8 @@ void menu(Node** head, FILE* in)
     switch(choice)
     {
         case 1:
-            printf("List was created.");
+            printf("List was created.\n\n");
             createList(head, in);
-            printf("\n\n");
             break;
             
         case 2:
@@ -103,12 +104,21 @@ void menu(Node** head, FILE* in)
             break;
 
         case 3:
-            printf("Print\n");
+            if((*head) == NULL)
+            {
+                printf("List is empty\n\n");
+            }
 
+            else
+            {
+                MAX = findMax(head);
+                removeMax(MAX, head);
+            }
             break;
 
         case 4: 
-            _Exit(0);
+            *menuS = false;
+            break;
         
         default:
             printf("This option does not exist!\n\n");
@@ -179,5 +189,61 @@ void printList(Node** head)
         
         ptr = (*head) -> next;
         printList(&ptr);
+    }
+}
+
+int findMax(Node** head)
+{    
+    int MAX = (*head) -> data;
+    Node* ptr;
+
+    ptr = (*head) -> next;
+
+    while(ptr != NULL) 
+    {
+        if(MAX < ptr -> data)
+        {
+            MAX = ptr -> data;
+        }
+        ptr = ptr -> next;
+    }
+
+    return MAX;
+}
+
+void removeMax(int MAX, Node** head)
+{
+    Node* temp = (*head);
+    Node* previous;
+
+    if(temp != NULL && temp -> data == MAX)
+    {
+        (*head) = temp -> next;
+        free(temp);
+    }
+
+    temp = (*head);
+
+    previous = temp;
+
+    while(temp != NULL)
+    {
+        if(temp -> data != MAX)
+        {
+            previous = temp;
+            temp = temp -> next;
+        }
+
+        else
+        {
+            previous -> next = temp -> next;
+            free(temp);
+            temp = previous -> next;
+
+            if((*head) -> next == NULL)
+            {
+                (*head) = NULL;
+            }
+        }
     }
 }

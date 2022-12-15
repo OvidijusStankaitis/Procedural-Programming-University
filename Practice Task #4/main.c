@@ -1,4 +1,5 @@
 #include <functions.h>
+#include <stdbool.h>
 
 int main()
 {
@@ -10,10 +11,14 @@ int main()
 
     Node* head = NULL;
 
-    while(1)
+    bool menuS = true;
+
+    while(menuS)
     {
-        menu(&head, in);
+        menu(&head, in, &menuS);
     }
+
+    fclose(in);
 
     return 0;
 }
