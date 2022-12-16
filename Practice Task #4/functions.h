@@ -9,7 +9,7 @@ typedef struct Node
 
 FILE* fileValidation(FILE* file, char* mode);
 
-int Validation(FILE* in, bool* status);
+int validationData(FILE* in, bool* status);
 
 int choiceValidation(int n);
 

@@ -1,12 +1,14 @@
 #include <functions.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 FILE* fileValidation(FILE* file, char* mode)
 {    
     char fileName[256];
     char fileNoExtName[254];
 
+    // Prompts user for input
     printf("The program will open an input .txt file with the name you provided.\n");
     printf("File must exist.\n\n");
     scanf("%s", fileNoExtName);
@@ -15,6 +17,7 @@ FILE* fileValidation(FILE* file, char* mode)
 
     file = fopen(fileName, mode);
 
+    // Tells user that file was not found, propmpts for input again
     while(file == NULL)
     {
         printf("File not found. Enter an input file name without extension:\n\n");
@@ -30,26 +33,41 @@ FILE* fileValidation(FILE* file, char* mode)
     return file;
 }
 
-int Validation(FILE* in, bool* status)
+int validationData(FILE* in, bool* status)
 {
-    int n;
-    int loop = 0;
-    char c;
+    int n = 77;
+    bool loop = true;
+    char c, prev = '1';
 
-    while(!loop)
+    while(loop)
     {
-        if(fscanf(in, "%d", &n) == 1) 
-        {   
-            c = fgetc(in);
-            if(c == ' ' || c == '\n' || c == EOF) 
-            {
-                return n;
+        c = fgetc(in);      
+        if(isdigit(c))
+        {
+            fseek(in, -1, SEEK_CUR);
+
+            if(fscanf(in, "%d", &n) == 1 && isdigit(prev)) 
+            {   
+                c = fgetc(in);
+                if(c == ' ' || c == '\n' || c == EOF) 
+                {
+                    return n;
+                }
             }
         }
 
-        if(fgetc(in) == EOF)
+        else 
         {
-            loop = 1;
+            if(c == ' ' || c == '\n')
+                prev = '1';
+            
+            else
+                prev = '!';
+        }
+
+        if(c == EOF)
+        {
+            loop = false;
             *status = false;
         }
     }
@@ -59,6 +77,7 @@ int Validation(FILE* in, bool* status)
 
 int choiceValidation(int n)
 {
+    // When user choice is littered with symbols and letters
     while(scanf("%d", &n) != 1 || getchar() != '\n')
     {
         printf("\nThis option does not exist!\n\n");
@@ -135,50 +154,61 @@ void createList(Node** head, FILE* in)
 
     int n;
 
+    // Loops while encounters eof
     while(!feof(in))
     {
-        n = Validation(in, &status);
+        n = validationData(in, &status);
 
         temp = (Node*)malloc(sizeof(Node));
-
+        
+        // Prints prompt if no more memory exists
         if(temp == NULL)
         {
             printf("Out of memory!\n");
             _Exit(0);
         }
-
-        temp -> data = n;
-
-        temp -> next = NULL;
-
-        if((*head) == NULL)
+        
+        // Puts data inside the list after it passes validation and while not eof
+        if(status)
         {
-            (*head) = temp;
-        }
+            temp -> data = n;
 
-        else
-        {
-            ptr = (*head);
+            temp -> next = NULL;
 
-            while(ptr -> next != NULL)
+            if((*head) == NULL)
             {
-                ptr = ptr -> next;
+                (*head) = temp;
             }
-            ptr -> next = temp;
-        }        
+
+            else
+            {
+                ptr = (*head);
+
+                while(ptr -> next != NULL)
+                {
+                    ptr = ptr -> next;
+                }
+                ptr -> next = temp;
+            }  
+        }      
     }
+
+    // Puts cursor to the begining of file
+    fseek(in, 0, SEEK_SET);
 }
 
 void printList(Node** head)
 {
     Node* ptr;
 
+    // If list is empty
     if((*head) == NULL)
     {
         printf("List is empty");
         return;
     }
 
+    // Prints the elemt of the list and uses recursrion to print the next element
     else
     {    
         printf("%d ", (*head) -> data);
@@ -199,6 +229,7 @@ int findMax(Node** head)
 
     ptr = (*head) -> next;
 
+    // Loops through the list and finds the MAX
     while(ptr != NULL) 
     {
         if(MAX < ptr -> data)
@@ -216,16 +247,17 @@ void removeMax(int MAX, Node** head)
     Node* temp = (*head);
     Node* previous;
 
-    if(temp != NULL && temp -> data == MAX)
+    // If the max value is in head
+    while(temp != NULL && temp -> data == MAX)
     {
         (*head) = temp -> next;
         free(temp);
+        temp = (*head);
     }
-
-    temp = (*head);
 
     previous = temp;
 
+    // Checks the rest of the list for the max value
     while(temp != NULL)
     {
         if(temp -> data != MAX)

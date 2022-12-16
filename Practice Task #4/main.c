@@ -1,3 +1,8 @@
+// LSP numeris 2213794
+// ovidijus.stankaitis@mif.stud.vu.lt
+// Užduoties nr. - 4
+// Variantas nr. - 7
+
 #include <functions.h>
 #include <stdbool.h>
 

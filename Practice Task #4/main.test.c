@@ -1,38 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <functions.h>
+#include <assert.h>
 
 int main()
 {
-    struct Node* head = NULL;
-    struct Node* second = NULL;
-    struct Node* third = NULL;
-    struct Node* fourth = NULL;
-    struct Node* fifth = NULL;
-    struct Node* sixth = NULL;
- 
-    head = (struct Node*)malloc(sizeof(struct Node));
-    second = (struct Node*)malloc(sizeof(struct Node));
-    third = (struct Node*)malloc(sizeof(struct Node));
-    fourth = (struct Node*)malloc(sizeof(struct Node));
-    fifth = (struct Node*)malloc(sizeof(struct Node));
-    sixth = (struct Node*)malloc(sizeof(struct Node));
+    /*Opening file*/
+    FILE* in = fopen("test.txt", "r");
 
-    head -> data = 1;
-    head -> next = second;
+    Node* head = NULL;
 
-    second -> data = 2;
-    second -> next = third;
+    /*Testing if list was created without mistakes*/
+    createList(&head, in);
 
-    third -> data = 3;
-    third -> next = fourth;
+    int S[6] = {1, 2, 3, 4, 6, 5};
+    
+    Node* temp = head;
 
-    fourth -> data = 4;
-    fourth -> next = fifth;
+    for(int i = 0; i < 6; i++)
+    {
+        assert(temp -> data == S[i]);
+        temp = temp -> next;
+    }
 
-    fifth -> data = 5;
-    fifth -> next = sixth;
+    printf("Test #1 passed. List is created without mistakes.\n");
 
-    sixth -> data = 6;
-    sixth -> next = sixth;
+    /*Testing if the program iterated throught the whole list*/
+    assert(temp == NULL);
+    printf("Test #2 passed. Program iterated through the entire list.\n");
+
+    /*Testting if the max value was found*/
+    int max = findMax(&head);
+    assert(max == 6);
+
+    printf("Test #3 passed. Correct max value was found\n");
+
+    /*Testing if the max value was removed*/
+    removeMax(max, &head);
+
+    int A[5] = {1, 2, 3, 4, 5};
+
+    temp = head;
+
+    for(int i = 0; i < 5; i++)
+    {
+        assert(temp -> data == A[i]);
+        temp = temp -> next;
+    }
+
+    // assert(head == NULL);
+
+    printf("Test #4 passed. Correct value was removed.\n");
+
+    /*Testing if the program iterated throught the whole list*/
+    assert(temp == NULL);
+    printf("Test #5 passed. Program iterated through the entire list.\n");
+
+    return 0;
 }
