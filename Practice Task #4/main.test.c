@@ -7,6 +7,8 @@ int main()
 {
     /*Opening file*/
     FILE* in = fopen("test.txt", "r");
+    assert(in != NULL);
+    printf("\nTest #1 passed. File was opened.\n");
 
     Node* head = NULL;
 
@@ -23,17 +25,17 @@ int main()
         temp = temp -> next;
     }
 
-    printf("Test #1 passed. List is created without mistakes.\n");
+    printf("Test #2 passed. List is created without mistakes.\n");
 
     /*Testing if the program iterated throught the whole list*/
     assert(temp == NULL);
-    printf("Test #2 passed. Program iterated through the entire list.\n");
+    printf("Test #3 passed. Program iterated through the entire list.\n");
 
     /*Testting if the max value was found*/
     int max = findMax(&head);
     assert(max == 6);
 
-    printf("Test #3 passed. Correct max value was found\n");
+    printf("Test #4 passed. Correct max value was found\n");
 
     /*Testing if the max value was removed*/
     removeMax(max, &head);
@@ -50,11 +52,11 @@ int main()
 
     // assert(head == NULL);
 
-    printf("Test #4 passed. Correct value was removed.\n");
+    printf("Test #5 passed. Correct value was removed.\n");
 
     /*Testing if the program iterated throught the whole list*/
     assert(temp == NULL);
-    printf("Test #5 passed. Program iterated through the entire list.\n");
+    printf("Test #6 passed. Program iterated through the entire list.\n\n");
 
     return 0;
 }
