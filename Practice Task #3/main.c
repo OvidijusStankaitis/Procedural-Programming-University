@@ -149,12 +149,12 @@ void inputRead(char*** text, FILE* input, int* size)
 
 void parsingInput(char*** out, char** text, int size)
 {
-    int n = 0, i = 0;
+    int n = 0;
 
     // Allocating the number of lines to the dynamic buffer
     (*out) = malloc(sizeof(char*) * size);
 
-    while(i < size)
+    for(int i = 0; i < size; i++)
     {
         int index = 0;
 
@@ -205,7 +205,6 @@ void parsingInput(char*** out, char** text, int size)
                 (*out)[i][u] = ARR[u];
             }
         }
-        i++;
     }   
 }
 
